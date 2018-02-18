@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-var _express = require('express');
+var _express = require("express");
 
 var _express2 = _interopRequireDefault(_express);
 
-var _jsonwebtoken = require('jsonwebtoken');
+var _jsonwebtoken = require("jsonwebtoken");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19,14 +19,14 @@ var router = _express2.default.Router();
  * @return {json} signed JWT token, {token: JWT_TOKEN}
  */
 
-router.post('/login', function (req, res, next) {
-  if (typeof req.body.username !== 'undefined' && typeof req.body.password !== 'undefined') {
-    var token = (0, _jsonwebtoken.sign)({ 'username': req.body.username, 'password': req.body.password }, 'anil');
+router.post("/login", function (req, res, next) {
+  if (typeof req.body.username !== "undefined" && typeof req.body.password !== "undefined") {
+    var token = (0, _jsonwebtoken.sign)({ username: req.body.username, password: req.body.password }, "lalit");
     res.status(200);
     res.json({ token: token });
   } else {
     res.status(400);
-    res.json({ message: 'missing username or password' });
+    res.json({ message: "missing username or password" });
   }
 });
 
@@ -38,21 +38,21 @@ router.post('/login', function (req, res, next) {
  * @param {function} next
  */
 //
-router.post('/authorize', function (req, res, next) {
+router.post("/authorize", function (req, res, next) {
   if (req.headers && req.headers.authorization) {
     var token = req.headers.authorization;
-    (0, _jsonwebtoken.verify)(token, 'anil', function (err, decoded) {
+    (0, _jsonwebtoken.verify)(token, "lalit", function (err, decoded) {
       if (err) {
         res.status(400);
-        res.json({ 'message': 'Invalid signature' });
+        res.json({ message: "Invalid signature" });
       } else {
         res.status(200);
-        res.json({ 'username': decoded.username, 'password': decoded.password });
+        res.json({ username: decoded.username, password: decoded.password });
       }
     });
   } else {
     res.status(400);
-    res.json({ 'message': 'Headers not found' });
+    res.json({ message: "Headers not found" });
   }
   // console.log(req.headers);
   // console.log(req.headers.authorization);

@@ -62,7 +62,7 @@ router.post('/login', function (req, res, next) {
 router.post('/authorize', function (req, res, next) {
   if (req.headers &amp;&amp; req.headers.authorization) {
     var token = req.headers.authorization
-    verify(token, 'anil', function (err, decoded) {
+    verify(token, 'lalit', function (err, decoded) {
       if (err) {
         res.status(500)
         res.send('Invalid signature')
