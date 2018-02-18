@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.65% </span>
+        <span class="strong">68.25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>59/63</span>
+        <span class='fraction'>43/63</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">54.17% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>20/24</span>
+        <span class='fraction'>13/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.55% </span>
+        <span class="strong">67.74% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>58/62</span>
+        <span class='fraction'>42/62</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -301,37 +301,37 @@
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -450,37 +450,37 @@ router.post("/thumbnail", function (req, res, next) {
   if (typeof req.query.imageUrl !== "undefined") {
     var imageUrl = req.query.imageUrl;
     _request2.default.head(imageUrl, function (err, response, body) {
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
-<span class="cstat-no" title="statement not covered" >        next(err);</span>
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (err) {
+        next(err);
       } else {
-        var contentType = response.headers["content-type"].substring(0, 5);
-        var imgFormat = response.headers["content-type"].substring(6);
-        var date = response.headers["date"].split(" ").join("_");
-        if (response.statusCode === 200 &amp;&amp; contentType === "image") {
-          if (response.headers["content-length"] &lt;= 10 * 1024 * 1024) {
-            var originalLocation = (0, _path.resolve)((0, _path.join)(baseDirectory, "img")) + "/original_" + date + "." + imgFormat;
-            var thumbnailLocation = (0, _path.resolve)((0, _path.join)(baseDirectory, "img")) + "/thumbnail_" + date + "." + imgFormat;
-            var stream = _request2.default.get(imageUrl).pipe((0, _fs.createWriteStream)(originalLocation));
-            stream.on("finish", function () {
-              (0, _resize.thumbnailSize)(originalLocation, thumbnailLocation, function (err, out) {
-                <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        var contentType = response.headers["content-type"].substring(0, 5);</span>
+<span class="cstat-no" title="statement not covered" >        var imgFormat = response.headers["content-type"].substring(6);</span>
+<span class="cstat-no" title="statement not covered" >        var date = response.headers["date"].split(" ").join("_");</span>
+<span class="cstat-no" title="statement not covered" >        if (response.statusCode === 200 &amp;&amp; contentType === "image") {</span>
+<span class="cstat-no" title="statement not covered" >          if (response.headers["content-length"] &lt;= 10 * 1024 * 1024) {</span>
+<span class="cstat-no" title="statement not covered" >            var originalLocation = (0, _path.resolve)((0, _path.join)(baseDirectory, "img")) + "/original_" + date + "." + imgFormat;</span>
+<span class="cstat-no" title="statement not covered" >            var thumbnailLocation = (0, _path.resolve)((0, _path.join)(baseDirectory, "img")) + "/thumbnail_" + date + "." + imgFormat;</span>
+<span class="cstat-no" title="statement not covered" >            var stream = _request2.default.get(imageUrl).pipe((0, _fs.createWriteStream)(originalLocation));</span>
+<span class="cstat-no" title="statement not covered" >            stream.on("finish", <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >              (0, _resize.thumbnailSize)(originalLocation, thumbnailLocation, <span class="fstat-no" title="function not covered" >function (err, out) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
 <span class="cstat-no" title="statement not covered" >                  next(err);</span>
                 } else {
-                  res.writeHead(200, {
+<span class="cstat-no" title="statement not covered" >                  res.writeHead(200, {</span>
                     "content-type": response.headers["content-type"],
                     Connection: "close"
                   });
-                  res.end((0, _fs.readFileSync)(thumbnailLocation), "binary");
+<span class="cstat-no" title="statement not covered" >                  res.end((0, _fs.readFileSync)(thumbnailLocation), "binary");</span>
                 }
               });
             });
           } else {
-            res.status(400);
-            res.json({ message: "image exceeds than 10 MB" });
+<span class="cstat-no" title="statement not covered" >            res.status(400);</span>
+<span class="cstat-no" title="statement not covered" >            res.json({ message: "image exceeds than 10 MB" });</span>
           }
         } else {
-          res.status(400);
-          res.json({ message: "image not found" });
+<span class="cstat-no" title="statement not covered" >          res.status(400);</span>
+<span class="cstat-no" title="statement not covered" >          res.json({ message: "image not found" });</span>
         }
       }
     });
@@ -496,7 +496,7 @@ module.exports = router;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Feb 18 2018 22:15:28 GMT+0530 (IST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Feb 18 2018 22:29:33 GMT+0530 (IST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

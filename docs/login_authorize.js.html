@@ -42,7 +42,7 @@ import { sign, verify } from 'jsonwebtoken'
 
 router.post('/login', function (req, res, next) {
   if (typeof req.body.username !== 'undefined' &amp;&amp; typeof req.body.password !== 'undefined') {
-    var token = sign({ 'username': req.body.username, 'password': req.body.password }, 'anil')
+    var token = sign({ 'username': req.body.username, 'password': req.body.password }, 'lalit')
     res.status(200)
     res.json({token: token})
   } else {
