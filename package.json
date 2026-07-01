@@ -30,7 +30,7 @@
     "jimp": "^0.10.3",
     "jsdoc": "^3.6.4",
     "jsonpatch": "^3.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mkdirp": "^1.0.4",
     "mocha": "^7.1.2",
     "morgan": "~1.10.0",
